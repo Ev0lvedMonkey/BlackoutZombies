@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: withGun_0
+      name: withAK_0
       rect:
         serializedVersion: 2
         x: 35
@@ -118,7 +118,7 @@ TextureImporter:
         width: 56
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      withGun_0: 64004916
+      withAK_0: 64004916
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,0 +1,169 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8681386970765611601
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387656902041226465, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 679215646, guid: c9c0e44fd2c8de1439db44eb4333e316, type: 3}
+    - target: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_Name
+      value: Shootgun_Character Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8294028619789130592, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2986268400300864}
+    - targetCorrespondingSourceObject: {fileID: 7161363876371021527, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7272898079893051685}
+  m_SourcePrefab: {fileID: 100100000, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+--- !u!1 &1952378560678784134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7161363876371021527, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+  m_PrefabInstance: {fileID: 8681386970765611601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!60 &7272898079893051685
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952378560678784134}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6, y: 0.92}
+    newSize: {x: 0.56, y: 0.92}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.19, y: 0.099999994}
+      - {x: 0.04, y: 0.08}
+      - {x: 0.08, y: 0.26}
+      - {x: 0.089999996, y: 0.35}
+      - {x: 0.04, y: 0.45999998}
+      - {x: -0.16, y: 0.45999998}
+      - {x: -0.19, y: 0.32}
+      - {x: -0.28, y: 0.21}
+      - {x: -0.29999998, y: 0.089999996}
+      - {x: -0.29999998, y: -0.34}
+      - {x: -0.28, y: -0.39}
+      - {x: -0.22, y: -0.45999998}
+      - {x: 0.16, y: -0.45999998}
+      - {x: 0.28, y: -0.34}
+      - {x: 0.29999998, y: -0.26}
+      - {x: 0.29999998, y: -0.03}
+  m_UseDelaunayMesh: 0
+--- !u!1 &2681091639561063328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+  m_PrefabInstance: {fileID: 8681386970765611601}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2986268400300864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2681091639561063328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56baddef497746743bc95e7d22b8df68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 0}
+  _firePoint: {fileID: 0}
+  _bulletsCount: 8
+  _fireRate: 0.1

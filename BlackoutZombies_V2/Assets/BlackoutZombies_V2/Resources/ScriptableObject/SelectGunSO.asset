@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70dc6a20116b2e149837fb2fb432d527, type: 3}
+  m_Name: SelectGunSO
+  m_EditorClassIdentifier: 
+  _gunSprites:
+  - {fileID: -667617319, guid: f7aa6f1f557556f458e30e700737b7c7, type: 3}
+  - {fileID: 896325455, guid: 168f27356e3474245acba8018493787f, type: 3}
+  - {fileID: 1764562860, guid: e7d8bbd9708a482488596521abcd04e3, type: 3}
+  - {fileID: 250530882, guid: ab92b2a30e1d6fe4780657de27e29bf5, type: 3}
