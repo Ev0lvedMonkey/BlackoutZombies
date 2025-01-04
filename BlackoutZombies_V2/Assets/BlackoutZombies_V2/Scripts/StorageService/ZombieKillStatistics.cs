@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-public class KillZombiesCount : IService
+public class ZombieKillStatistics : IService
 {
     [JsonProperty(PropertyName = "DZC")]
     public int DeathZombiesCount { get; set; }

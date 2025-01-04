@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class KillZombiesCountStorage : MonoBehaviour
 {
-    private KillZombiesCount _storage;
+    private ZombieKillStatistics _storage;
     private JSonToFileStorageService _storageService;
 
-    private const string Key1 = "Key";
     public void Init()
     {
-        _storage = ServiceLocator.Current.Get<KillZombiesCount>();
+        _storage = ServiceLocator.Current.Get<ZombieKillStatistics>();
         Debug.LogWarning($"Getted");
         Debug.LogWarning($"_storage.DeathZombiesCount {_storage.DeathZombiesCount}");
         Debug.LogWarning($"_storage.RoundDeathZombiesCount {_storage.RoundDeathZombiesCount}");
@@ -21,11 +20,8 @@ public class KillZombiesCountStorage : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _storage.DeathZombiesCount++;
-            _storage.RoundDeathZombiesCount += 2;
-            _storage.RoundScore += 3;
-            _storage.BestScore += 4;
-            _storageService.Save(Key1, _storage);
+            _storage.DeathZombiesCount+=10;
+            _storageService.Save(ConstantsService.StorageKey, _storage);
             Debug.Log($"Saved");
             Debug.Log($"_storage.DeathZombiesCount {_storage.DeathZombiesCount}");
             Debug.Log($"_storage.RoundDeathZombiesCount {_storage.RoundDeathZombiesCount}");

@@ -6,10 +6,8 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private CanvasService _canvasService;
     [SerializeField] private KillZombiesCountStorage _exampleStorage;
 
-    private const string Key1 = "Key";
-
     private SelectGunUI _selectGunUI;
-    private KillZombiesCount _storage;
+    private ZombieKillStatistics _storage;
     private IStorageService _storageService;
 
     private void Awake()
@@ -23,13 +21,10 @@ public class GameBootstrap : MonoBehaviour
     {
         _storage = new();
         _storageService = new JSonToFileStorageService();
-        _storageService.Load<KillZombiesCount>(Key1, (storage) => { _storage = storage;
-            Debug.Log($"LOADED");
-            Debug.Log($"_storage.DeathZombiesCount {_storage.DeathZombiesCount}");
-            Debug.Log($"_storage.RoundDeathZombiesCount {_storage.RoundDeathZombiesCount}");
-            Debug.Log($"_storage.RoundScore{_storage.RoundScore}");
-            Debug.Log($"_storage.BestScore {_storage.BestScore}");
-        });
+
+        _storageService.Load<ZombieKillStatistics>(ConstantsService.StorageKey, (storage) => { _storage = storage;
+            Debug.Log($"LOADED");});
+
         ServiceLocator.Inizialize();
         ServiceLocator.Current.Register(_resourceLoader);
         ServiceLocator.Current.Register(_canvasService);
