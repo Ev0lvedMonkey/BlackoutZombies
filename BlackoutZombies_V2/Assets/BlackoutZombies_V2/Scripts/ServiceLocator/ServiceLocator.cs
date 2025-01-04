@@ -23,7 +23,9 @@ internal class ServiceLocator
             Debug.LogError($"{key} not registred with {GetType().Name}");
             throw new InvalidOperationException();
         }
-        return (T)_services[key];
+        var returnedSomething = (T)_services[key];
+        //Debug.Log($"ServiceLocator get {returnedSomething.GetType()} by key {key}");
+        return returnedSomething;
     }
 
     internal void Register<T>(T service) where T : IService
@@ -35,6 +37,7 @@ internal class ServiceLocator
             return;
         }
         _services.Add(key, service);
+        //Debug.Log($"ServiceLocator registered new service. Key {key} - service {service}");
     }
 
     internal void Unregister<T>() where T : IService

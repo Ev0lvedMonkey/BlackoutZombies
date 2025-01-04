@@ -35,11 +35,6 @@ public class ResourceLoaderService : MonoBehaviour, IService
             }
 
         }
-        Debug.Log("Prefabs Dictionary Contents:");
-        foreach (var entry in _prefabsDictionary)
-        {
-            Debug.Log($"Type: {entry.Key}, Prefab: {entry.Value}");
-        }
     }
 
     public T LoadResource<T>(Transform resourceParent = null) where T : ResourcePrefab

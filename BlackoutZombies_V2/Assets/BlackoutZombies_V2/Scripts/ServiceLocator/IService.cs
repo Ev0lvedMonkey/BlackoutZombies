@@ -1,1 +1,1 @@
-internal interface IService { }
+public interface IService { }
