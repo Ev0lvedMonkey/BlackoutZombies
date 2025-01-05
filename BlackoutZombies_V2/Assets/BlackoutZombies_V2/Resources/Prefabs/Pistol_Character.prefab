@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4710729972050125270, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: _aliveObjectConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: c190b0dbe2382ff40aaa67bb34ada62f, type: 2}
     - target: {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
       propertyPath: m_IsTrigger
       value: 0
@@ -20,6 +24,22 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 0.91
       objectReference: {fileID: 0}
+    - target: {fileID: 800156918754575752, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_AutoTiling
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 800156918754575752, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 800156918754575752, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1154778743384169281, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1664766845, guid: c1baee1c1635f1e4a876e4994f78c48f, type: 3}
     - target: {fileID: 5387656902041226465, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -70,28 +90,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 16335013233223444, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+    - {fileID: 800156918754575752, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2372925962786421415}
-    - targetCorrespondingSourceObject: {fileID: 7161363876371021527, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+      addedObject: {fileID: 873633227224552382}
+    - targetCorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4274018063847078901}
+      addedObject: {fileID: 2372925962786421415}
   m_SourcePrefab: {fileID: 100100000, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
---- !u!1 &684360294537136473 stripped
+--- !u!1 &3986333690800303743 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7161363876371021527, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
   m_PrefabInstance: {fileID: 7646285949116888974}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &4274018063847078901
+--- !u!60 &873633227224552382
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 684360294537136473}
+  m_GameObject: {fileID: 3986333690800303743}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -147,11 +168,6 @@ PolygonCollider2D:
       - {x: 0.31, y: -0.315}
       - {x: 0.39, y: -0.195}
   m_UseDelaunayMesh: 0
---- !u!1 &3986333690800303743 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6723695916965878257, guid: f93816dd9c676ef4bad81189d3231d0f, type: 3}
-  m_PrefabInstance: {fileID: 7646285949116888974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2372925962786421415
 MonoBehaviour:
   m_ObjectHideFlags: 0

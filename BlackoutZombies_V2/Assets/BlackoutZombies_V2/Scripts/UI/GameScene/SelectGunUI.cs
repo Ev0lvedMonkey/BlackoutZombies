@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SelectGunUI : ResourcePrefab
 {
     [Header("Configuration")]
-    [SerializeField] private SelectGunScriptableObject _selectGunScriptableObject;
+    [SerializeField] private GunsListConfig _selectGunScriptableObject;
 
     [Header("Components")]
     [SerializeField] private Image _gunIcon;
@@ -17,8 +17,8 @@ public class SelectGunUI : ResourcePrefab
     [SerializeField] private TextMeshProUGUI _scoreText;
 
     private int _currentGunIndex = 0;
-    private int _playerScore = 0;
     private ZombieKillStatistics _storage;
+    private EventManager _eventManager;
     private ResourceLoaderService _resourceLoaderService;
     private Dictionary<int, Action> _characterDictionary;
 
@@ -26,6 +26,7 @@ public class SelectGunUI : ResourcePrefab
     {
         UpdateGunIcon();
         _resourceLoaderService = ServiceLocator.Current.Get<ResourceLoaderService>();
+        _eventManager = ServiceLocator.Current.Get<EventManager>();
         _storage = ServiceLocator.Current.Get<ZombieKillStatistics>();
         _characterDictionary = new Dictionary<int, Action>
         {
@@ -57,8 +58,8 @@ public class SelectGunUI : ResourcePrefab
 
     private void SelectGun()
     {
-        Debug.Log($"Selected gun index: {_currentGunIndex}");
         _characterDictionary[_currentGunIndex].Invoke();
+        _eventManager.OnStartGame?.Invoke();
         Hide();
     }
 
@@ -72,9 +73,7 @@ public class SelectGunUI : ResourcePrefab
         _scoreText.gameObject.SetActive(!canPlay);
 
         if (!canPlay)
-        {
-            _scoreText.text = $"Недостаточно очков для этого оружия ({_playerScore}/{requiredScore})!";
-        }
+            _scoreText.text = $"The best count of killed zombies per round : {_storage.DeathZombiesCount}.\n Need: {requiredScore})!";
     }
 
     public void Show() =>

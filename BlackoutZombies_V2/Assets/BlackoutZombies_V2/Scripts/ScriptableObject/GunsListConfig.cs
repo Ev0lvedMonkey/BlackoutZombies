@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SelectGunSO", menuName = "ScriptableObjects/SelectGunScriptableObject")]
-public class SelectGunScriptableObject : ScriptableObject
+[CreateAssetMenu(fileName = "GunsListConfig", menuName = "ScriptableObjects/GunsListConfig")]
+public class GunsListConfig : ScriptableObject
 {
     [SerializeField] private List<Sprite> _gunSprites = new();
     [SerializeField] private List<int> _minScores = new(); 

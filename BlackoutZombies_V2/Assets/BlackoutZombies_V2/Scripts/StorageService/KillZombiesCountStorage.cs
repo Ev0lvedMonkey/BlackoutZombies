@@ -8,11 +8,6 @@ public class KillZombiesCountStorage : MonoBehaviour
     public void Init()
     {
         _storage = ServiceLocator.Current.Get<ZombieKillStatistics>();
-        Debug.LogWarning($"Getted");
-        Debug.LogWarning($"_storage.DeathZombiesCount {_storage.DeathZombiesCount}");
-        Debug.LogWarning($"_storage.RoundDeathZombiesCount {_storage.RoundDeathZombiesCount}");
-        Debug.LogWarning($"_storage.RoundScore{_storage.RoundScore}");
-        Debug.LogWarning($"_storage.BestScore {_storage.BestScore}");
         _storageService = ServiceLocator.Current.Get<JSonToFileStorageService>();
     }
 

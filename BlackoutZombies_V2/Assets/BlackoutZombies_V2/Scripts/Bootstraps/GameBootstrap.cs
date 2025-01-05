@@ -2,11 +2,19 @@ using UnityEngine;
 
 public class GameBootstrap : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] private ResourceLoaderService _resourceLoader;
     [SerializeField] private CanvasService _canvasService;
     [SerializeField] private KillZombiesCountStorage _exampleStorage;
 
+    [Header("Object Pools")]
+    [SerializeField] private ZombiesObjectPool _zombieObjectPool;
+
+    [Header("Light Mode")]
+    [SerializeField] private bool _isLightMode;
+
     private SelectGunUI _selectGunUI;
+    private EventManager _eventManager;
     private ZombieKillStatistics _storage;
     private IStorageService _storageService;
 
@@ -19,22 +27,29 @@ public class GameBootstrap : MonoBehaviour
 
     private void RegisterServices()
     {
+        _eventManager = new();
         _storage = new();
         _storageService = new JSonToFileStorageService();
 
-        _storageService.Load<ZombieKillStatistics>(ConstantsService.StorageKey, (storage) => { _storage = storage;
-            Debug.Log($"LOADED");});
+        _storageService.Load<ZombieKillStatistics>(ConstantsService.StorageKey, (storage) =>
+            _storage = storage);
 
         ServiceLocator.Inizialize();
+        ServiceLocator.Current.Register(_eventManager);
         ServiceLocator.Current.Register(_resourceLoader);
         ServiceLocator.Current.Register(_canvasService);
         ServiceLocator.Current.Register(_storage);
         ServiceLocator.Current.Register((JSonToFileStorageService)_storageService);
+        ServiceLocator.Current.Register(_zombieObjectPool);
     }
 
     private void InitResources()
     {
         _resourceLoader.InitializePrefabsDictionary();
+        if (_isLightMode)
+            _resourceLoader.LoadResource<LightMaterialFloorResource>();
+        else
+            _resourceLoader.LoadResource<BaseFloorResource>();
         _selectGunUI = ServiceLocator.Current.Get<ResourceLoaderService>().LoadResource<SelectGunUI>(_canvasService.transform);
     }
 
@@ -42,6 +57,7 @@ public class GameBootstrap : MonoBehaviour
     {
         _selectGunUI.Init();
         _exampleStorage.Init();
+        _eventManager.OnStartGame += _zombieObjectPool.Init;
     }
 
 }
