@@ -1,3 +1,1 @@
-public class BaseFloorResource : ResourcePrefab{
-
-}
+public class BaseFloorResource : ResourcePrefab{}

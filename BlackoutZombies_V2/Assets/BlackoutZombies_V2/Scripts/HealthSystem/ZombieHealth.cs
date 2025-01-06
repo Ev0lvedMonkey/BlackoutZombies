@@ -1,7 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(ZombieMover))]
-public class ZombieHealht : AliveObject{
+public class ZombieHealht : AliveObject
+{
 
     [SerializeField] private ZombieMover _zombieMover;
 
@@ -12,7 +13,7 @@ public class ZombieHealht : AliveObject{
 
     protected override void Die()
     {
-        base.Die();
+        Instantiate(_aliveObjectConfig.DeadBodyPrefab, transform.position, transform.rotation);
         ZombiesObjectPool zombiesObjectPool = ServiceLocator.Current.Get<ZombiesObjectPool>();
         zombiesObjectPool.Dispose(_zombieMover);
     }

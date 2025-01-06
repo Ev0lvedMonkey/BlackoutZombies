@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ZombieMover : MonoBehaviour, IMoverBlocker
+public class ZombieMover : MonoBehaviour
 {
     [SerializeField] private Transform _playerePosition;
 
@@ -25,7 +25,7 @@ public class ZombieMover : MonoBehaviour, IMoverBlocker
     private void OnEnable()
     {
         OpenMove();
-        _playerePosition = ServiceLocator.Current.Get<CharacterMover>().transform;
+        _playerePosition = ServiceLocator.Current.Get<CharacterManager>().transform;
         _movementSpeed = Random.Range(MinMovementSpeed, MaxMovementSpeed);
     }
 

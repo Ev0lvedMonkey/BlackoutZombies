@@ -1,24 +1,17 @@
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CharacterLightZone : MonoBehaviour
 {
     private float CurrentLightRange
     {
-        get
+        get => _currentLightRange;
+        set
         {
-            if (_currentLightRange >= ExtraLightRange)
-                _currentLightRange = ExtraLightRange;
-            if (_currentLightRange < MinLightRange)
-                _currentLightRange = MinLightRange;
-            return _currentLightRange;
+            _currentLightRange = Mathf.Clamp(value, MinLightRange, ExtraLightRange);
         }
-        set { _currentLightRange = value; }
-
     }
 
-    [SerializeField] private Light _playerLightSource;
-
+    private Light _lightSource;
     private float _currentLightRange;
     private bool _isNeedToUpdateLight;
     private EventManager _eventManager;
@@ -29,18 +22,13 @@ public class CharacterLightZone : MonoBehaviour
     private const float OnStartLightRange = 11;
     private const float MinLightRange = 4;
 
-    private void Awake()
+
+    public void Init(Light lightSource, EventManager eventManager)
     {
-        _eventManager = ServiceLocator.Current.Get<EventManager>();
+        _lightSource = lightSource;
+        _eventManager = eventManager;
         _eventManager.OnStartGame += StartLight;
         _eventManager.OnStopGame += LastLightBattery;
-    }
-
-    private void Update()
-    {
-        if (!_isNeedToUpdateLight)
-            return;
-        UpdateLightRange();
     }
 
     public void ReloadBattery()
@@ -48,22 +36,25 @@ public class CharacterLightZone : MonoBehaviour
         CurrentLightRange = MaxLightRange;
     }
 
+    public void UpdateLightRange()
+    {
+        if (!_isNeedToUpdateLight)
+            return;
+        CurrentLightRange -= BatteryExtinctionStep;
+        _lightSource.range = CurrentLightRange;
+    }
+
     private void StartLight()
     {
         _isNeedToUpdateLight = true;
         CurrentLightRange = OnStartLightRange;
-        _playerLightSource.range = CurrentLightRange;
+        _lightSource.range = CurrentLightRange;
     }
 
     private void LastLightBattery()
     {
         CurrentLightRange = ExtraLightRange;
-        _playerLightSource.intensity = 1.5f;
+        _lightSource.intensity = 1.5f;
     }
 
-    private void UpdateLightRange()
-    {
-        CurrentLightRange -= BatteryExtinctionStep;
-        _playerLightSource.range = CurrentLightRange;
-    }
 }

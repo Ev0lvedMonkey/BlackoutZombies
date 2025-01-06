@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class AliveObject : MonoBehaviour
 {
     [Header("Configuration")]
-    [SerializeField] private AliveObjectConfig _aliveObjectConfig;
+    [SerializeField] protected AliveObjectConfig _aliveObjectConfig;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -13,18 +13,9 @@ public abstract class AliveObject : MonoBehaviour
 
     protected int Health
     {
-        get
-        {
-            if (_health > _aliveObjectConfig.MaxHealthPoint)
-                _health = _aliveObjectConfig.MaxHealthPoint;
-            if (_health <= 0)
-            {
-                _health = 0;
-                Die();
-            }
-            return _health;
-        }
-        set => _health = value;
+        get => _health;
+        set =>
+            _health = Mathf.Clamp(value, 0, _aliveObjectConfig.MaxHealthPoint);
     }
 
     private void OnValidate()
@@ -38,17 +29,14 @@ public abstract class AliveObject : MonoBehaviour
         _spriteRenderer.sprite = _aliveObjectConfig.AliveSprite;
     }
 
-
     public virtual void TakeDamage(int damage)
     {
         Health -= damage;
-        Debug.Log($"{gameObject.name} take damage {damage}, bros health now {Health}");
+        if (Health <= 0)
+            Die();
+        Debug.Log($"Bro {gameObject.name} literaly take damage {damage} and he has HP {Health}");
     }
 
-    protected virtual void Die()
-    {
-        Debug.Log($"{gameObject.name} die");
-        _spriteRenderer.sprite = _aliveObjectConfig.DeadSprite;
-    }
+    protected abstract void Die();
 
 }

@@ -2,45 +2,42 @@ using UnityEngine;
 
 public abstract class WeaponShooting : ResourcePrefab
 {
-    [SerializeField] protected GameObject _bullet;
     [SerializeField] protected Transform _firePoint;
-    [SerializeField, Range(8, 30)] protected int _bulletsCount;
-    [SerializeField, Range(0.1f, 2f)] protected float _fireRate;
+
+    [Header("Config")]
+    [SerializeField] protected WeaponConfig _weaponConfig;
 
     private float _fireCooldown;
-    private int _bulletsForThisGun;
+    private int _bulletsCountInClip;
 
     private const int LMB = 0;
 
     private void OnEnable()
     {
-        DeafaultBulletsCount();
+        ReloadGun();
     }
 
     public abstract void Shoot();
 
-    public void ReloadGun(bool isRevive = false)
+    public void ReloadGun()
     {
-        _bulletsCount = _bulletsForThisGun;
+        _bulletsCountInClip = _weaponConfig.BulletsCount;
+    }
+
+    private void Update()
+    {
+        Fire();
     }
 
     public void Fire()
     {
-        if (Input.GetMouseButton(LMB) && _fireCooldown <= 0 && _bulletsCount > 0)
+        if (Input.GetMouseButton(LMB) && _fireCooldown <= 0 && _bulletsCountInClip > 0)
         {
             Shoot();
-            _bulletsCount--;
-            _fireCooldown = _fireRate;
+            _bulletsCountInClip--;
+            _fireCooldown = _weaponConfig.FireRate;
         }
         else
             _fireCooldown -= Time.deltaTime;
     }
-
-    private void DeafaultBulletsCount()
-    {
-        _bulletsForThisGun = _bulletsCount;
-    }
-
-
-
 }

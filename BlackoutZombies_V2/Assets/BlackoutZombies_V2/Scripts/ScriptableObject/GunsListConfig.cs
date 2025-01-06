@@ -16,7 +16,6 @@ public class GunsListConfig : ScriptableObject
             Debug.LogWarning($"Invalid index {index}. Returning default score 0.");
             return 0;
         }
-
         return _minScores[index];
     }
 }

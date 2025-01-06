@@ -6,6 +6,8 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private ResourceLoaderService _resourceLoader;
     [SerializeField] private CanvasService _canvasService;
     [SerializeField] private KillZombiesCountStorage _exampleStorage;
+    [SerializeField] private ZombiesSpawner _zombiesSpawner;
+    [SerializeField] private CameraTargetTracker _cameraTargetTracker;
 
     [Header("Object Pools")]
     [SerializeField] private ZombiesObjectPool _zombieObjectPool;
@@ -47,9 +49,9 @@ public class GameBootstrap : MonoBehaviour
     {
         _resourceLoader.InitializePrefabsDictionary();
         if (_isLightMode)
-            _resourceLoader.LoadResource<LightMaterialFloorResource>();
+            _resourceLoader.LoadResource<LightMaterialFloorResource>(null);
         else
-            _resourceLoader.LoadResource<BaseFloorResource>();
+            _resourceLoader.LoadResource<BaseFloorResource>(null);
         _selectGunUI = ServiceLocator.Current.Get<ResourceLoaderService>().LoadResource<SelectGunUI>(_canvasService.transform);
     }
 
@@ -58,6 +60,8 @@ public class GameBootstrap : MonoBehaviour
         _selectGunUI.Init();
         _exampleStorage.Init();
         _eventManager.OnStartGame += _zombieObjectPool.Init;
+        _zombiesSpawner.Init(_eventManager, _zombieObjectPool);
+        _cameraTargetTracker.Init();
     }
 
 }

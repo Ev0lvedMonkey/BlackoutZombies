@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74bdcd68a9e07f9448efd57834d5d30e, type: 3}
-  m_Name: AliveObjectConfig_Zombie2
+  m_Name: AliveObjectConfig_Zombie1
   m_EditorClassIdentifier: 
-  _aliveSprite: {fileID: -1473633633, guid: 3cac987f9768ec7418cb96554c5bd256, type: 3}
-  _deadSprite: {fileID: -1415131640, guid: 1cec5d4b644491c44ac6d1711654cf81, type: 3}
+  _aliveSprite: {fileID: -1271855811, guid: 3cac987f9768ec7418cb96554c5bd256, type: 3}
   _maxHealthPoint: 1
+  _deadBodyPrefab: {fileID: -3305971228071780262, guid: abdbf33d0ba887a47acadc0651bd2e86, type: 3}

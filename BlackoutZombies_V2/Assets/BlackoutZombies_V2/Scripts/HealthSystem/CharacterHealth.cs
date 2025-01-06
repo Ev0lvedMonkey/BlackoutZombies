@@ -3,11 +3,11 @@ using UnityEngine;
 public class CharacterHealth : AliveObject
 {
     private EventManager _eventManager;
-    private void Awake()
-    {
-        _eventManager = ServiceLocator.Current.Get<EventManager>();
-    }
 
+    public void Init(EventManager eventManager)
+    {
+        _eventManager = eventManager;
+    }
 
     public void TakeHeal(int healPoint)
     {
@@ -17,7 +17,7 @@ public class CharacterHealth : AliveObject
 
     protected override void Die()
     {
-        base.Die();
+        Instantiate(_aliveObjectConfig.DeadBodyPrefab, transform.position, transform.rotation);
         _eventManager.OnStopGame?.Invoke();
     }
 }

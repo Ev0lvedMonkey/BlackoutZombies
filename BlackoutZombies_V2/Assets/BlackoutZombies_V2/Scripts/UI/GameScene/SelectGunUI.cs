@@ -30,10 +30,10 @@ public class SelectGunUI : ResourcePrefab
         _storage = ServiceLocator.Current.Get<ZombieKillStatistics>();
         _characterDictionary = new Dictionary<int, Action>
         {
-            {0, () => _resourceLoaderService.LoadResource<PistolShooting>()},
-            {1, () => _resourceLoaderService.LoadResource<UziShooting>()},
-            {2, () => _resourceLoaderService.LoadResource<ShotgunShooting>()},
-            {3, () => _resourceLoaderService.LoadResource<AKShooting>()}
+            {0, () => _resourceLoaderService.LoadResource<PistolShooting>(null)},
+            {1, () => _resourceLoaderService.LoadResource<UziShooting>(null)},
+            {2, () => _resourceLoaderService.LoadResource<ShotgunShooting>(null)},
+            {3, () => _resourceLoaderService.LoadResource<AKShooting>(null)}
         };
         _rightButton.onClick.AddListener(() => SwitchGun(true));
         _leftButton.onClick.AddListener(() => SwitchGun(false));
@@ -73,7 +73,7 @@ public class SelectGunUI : ResourcePrefab
         _scoreText.gameObject.SetActive(!canPlay);
 
         if (!canPlay)
-            _scoreText.text = $"The best count of killed zombies per round : {_storage.DeathZombiesCount}.\n Need: {requiredScore})!";
+            _scoreText.text = $"The best count of killed zombies per round : {_storage.DeathZombiesCount}.\n Need: {requiredScore}!";
     }
 
     public void Show() =>

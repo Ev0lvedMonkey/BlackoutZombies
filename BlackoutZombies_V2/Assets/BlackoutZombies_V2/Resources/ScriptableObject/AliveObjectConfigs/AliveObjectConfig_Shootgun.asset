@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AliveObjectConfig_Shootgun
   m_EditorClassIdentifier: 
   _aliveSprite: {fileID: 679215646, guid: c9c0e44fd2c8de1439db44eb4333e316, type: 3}
-  _deadSprite: {fileID: -1415131640, guid: 1cec5d4b644491c44ac6d1711654cf81, type: 3}
   _maxHealthPoint: 3
+  _deadBodyPrefab: {fileID: 5940596093823713690, guid: 5081af22f6a3ef942b9141545cb06164, type: 3}

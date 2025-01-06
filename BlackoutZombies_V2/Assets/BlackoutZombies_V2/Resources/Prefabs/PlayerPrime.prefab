@@ -103,10 +103,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8294028619789130592}
-  - component: {fileID: 1208875660879166074}
+  - component: {fileID: 1304382853457533703}
   - component: {fileID: -4710729972050125270}
-  - component: {fileID: 1154778743384169281}
   - component: {fileID: 2379246015810265546}
+  - component: {fileID: 1154778743384169281}
   - component: {fileID: 5279621574716687785}
   - component: {fileID: 800156918754575752}
   m_Layer: 0
@@ -132,7 +132,7 @@ Transform:
   - {fileID: 7740479970582017299}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1208875660879166074
+--- !u!114 &1304382853457533703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,10 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6723695916965878257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82c740841e131784699f2c7ae629a054, type: 3}
+  m_Script: {fileID: 11500000, guid: 98362c5adfc47b04a81015b81e8d7e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 7
+  _lightSource: {fileID: 7562685435442651864}
+  _characterLightZone: {fileID: 2379246015810265546}
+  _characterHealth: {fileID: -4710729972050125270}
 --- !u!114 &-4710729972050125270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,6 +162,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aliveObjectConfig: {fileID: 0}
   _spriteRenderer: {fileID: 1154778743384169281}
+--- !u!114 &2379246015810265546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6723695916965878257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5048b25ad023f3f4ca1c3ae56438081c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &1154778743384169281
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -211,19 +226,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2379246015810265546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6723695916965878257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5048b25ad023f3f4ca1c3ae56438081c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerLightSource: {fileID: 7562685435442651864}
 --- !u!50 &5279621574716687785
 Rigidbody2D:
   serializedVersion: 4
