@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 public class ZombieKillStatistics : IService
 {
     [JsonProperty(PropertyName = "DZC")]
-    public int DeathZombiesCount { get; set; }
+    public int BestDeathZombiesCountInRound { get; set; }
     [JsonProperty(PropertyName = "RDZC")]
     public int RoundDeathZombiesCount { get; set; }
     [JsonProperty(PropertyName = "RC")]

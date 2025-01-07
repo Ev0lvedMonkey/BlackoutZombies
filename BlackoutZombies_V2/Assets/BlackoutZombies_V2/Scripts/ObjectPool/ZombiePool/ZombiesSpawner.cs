@@ -21,11 +21,9 @@ public class ZombiesSpawner : MonoBehaviour
 
     public void StartSpawn()
     {
-        Debug.Log($"Coroutine ");
         if (_coroutine == null)
         {
             _coroutine = StartCoroutine(CircleSpawn());
-            Debug.Log($"Coroutine started");
         }
         else
             Debug.Log($"Coroutine DONT started");
@@ -36,7 +34,6 @@ public class ZombiesSpawner : MonoBehaviour
         if (_coroutine != null)
         {
             StopCoroutine(_coroutine);
-            Debug.Log($"Coroutine stoped");
             _coroutine = null;
         }
         else

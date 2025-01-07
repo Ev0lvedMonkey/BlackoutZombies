@@ -9,14 +9,28 @@ public abstract class WeaponShooting : ResourcePrefab
 
     private float _fireCooldown;
     private int _bulletsCountInClip;
-
+    private EventManager _eventManager;
+    private bool _canShoot;
     private const int LMB = 0;
+
+    private void Awake()
+    {
+        _eventManager = ServiceLocator.Current.Get<EventManager>();
+        _eventManager.OnStartGame += OpenShoot;
+        _eventManager.OnResumeGame += OpenShoot;
+        _eventManager.OnStopGame += BlockShoot;
+        _eventManager.OnPauseGame += BlockShoot;
+    }
 
     private void OnEnable()
     {
         ReloadGun();
     }
 
+    private void Update()
+    {
+        Fire();
+    }
     public abstract void Shoot();
 
     public void ReloadGun()
@@ -24,13 +38,10 @@ public abstract class WeaponShooting : ResourcePrefab
         _bulletsCountInClip = _weaponConfig.BulletsCount;
     }
 
-    private void Update()
-    {
-        Fire();
-    }
-
     public void Fire()
     {
+        if (_canShoot == false)
+            return;
         if (Input.GetMouseButton(LMB) && _fireCooldown <= 0 && _bulletsCountInClip > 0)
         {
             Shoot();
@@ -40,4 +51,10 @@ public abstract class WeaponShooting : ResourcePrefab
         else
             _fireCooldown -= Time.deltaTime;
     }
+
+    private void BlockShoot() =>
+        _canShoot = false;
+
+    private void OpenShoot() =>
+        _canShoot = true;
 }

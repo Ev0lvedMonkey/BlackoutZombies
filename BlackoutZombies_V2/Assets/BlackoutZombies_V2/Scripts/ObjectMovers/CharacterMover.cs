@@ -6,7 +6,7 @@ public class CharacterMover
     private Vector2 _moveVector;
     private Vector2 _mousePosition;
     private float _movementSpeed;
-    private bool _isMoving;
+    private bool _canMove;
     private EventManager _eventManager;
 
     private const string Horizontal = "Horizontal";
@@ -24,13 +24,13 @@ public class CharacterMover
         _eventManager.OnStartGame += OpenMove;
         _eventManager.OnResumeGame += OpenMove;
         _eventManager.OnStopGame += BlockMove;
-        _eventManager.OnStopGame += BlockMove;
+        _eventManager.OnPauseGame += BlockMove;
     }
 
 
     public void Move()
     {
-        if (_isMoving == false)
+        if (_canMove == false)
             return;
         _moveVector.x = Input.GetAxisRaw(Horizontal);
         _moveVector.y = Input.GetAxisRaw(Vertical);
@@ -43,8 +43,8 @@ public class CharacterMover
     }
 
     private void BlockMove() =>
-        _isMoving = false;
+        _canMove = false;
 
     private void OpenMove() =>
-        _isMoving = true;
+        _canMove = true;
 }

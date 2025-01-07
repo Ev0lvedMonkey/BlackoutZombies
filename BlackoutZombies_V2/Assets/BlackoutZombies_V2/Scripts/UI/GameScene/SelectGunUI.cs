@@ -22,6 +22,11 @@ public class SelectGunUI : ResourcePrefab
     private ResourceLoaderService _resourceLoaderService;
     private Dictionary<int, Action> _characterDictionary;
 
+    private void OnDisable()
+    {
+        _eventManager.OnStartGame -= Hide;
+    }
+
     public void Init()
     {
         UpdateGunIcon();
@@ -38,6 +43,7 @@ public class SelectGunUI : ResourcePrefab
         _rightButton.onClick.AddListener(() => SwitchGun(true));
         _leftButton.onClick.AddListener(() => SwitchGun(false));
         _playButton.onClick.AddListener(SelectGun);
+        _eventManager.OnStartGame += Hide;
         UpdatePlayButtonState();
     }
 
@@ -58,22 +64,21 @@ public class SelectGunUI : ResourcePrefab
 
     private void SelectGun()
     {
-        _characterDictionary[_currentGunIndex].Invoke();
+        _characterDictionary[_currentGunIndex]?.Invoke();
         _eventManager.OnStartGame?.Invoke();
-        Hide();
     }
 
     private void UpdatePlayButtonState()
     {
         int requiredScore = _selectGunScriptableObject.GetMinScoreForGun(_currentGunIndex);
-        Debug.Log($"STORAGE.DeathZombiesCount  {_storage.DeathZombiesCount}");
-        bool canPlay = _storage.DeathZombiesCount >= requiredScore;
+        Debug.Log($"STORAGE.DeathZombiesCount  {_storage.BestDeathZombiesCountInRound}");
+        bool canPlay = _storage.BestDeathZombiesCountInRound >= requiredScore;
 
         _playButton.gameObject.SetActive(canPlay);
         _scoreText.gameObject.SetActive(!canPlay);
 
         if (!canPlay)
-            _scoreText.text = $"The best count of killed zombies per round : {_storage.DeathZombiesCount}.\n Need: {requiredScore}!";
+            _scoreText.text = $"The best count of killed zombies per round : {_storage.BestDeathZombiesCountInRound}.\n Need: {requiredScore}!";
     }
 
     public void Show() =>

@@ -10,9 +10,6 @@ public class CharacterManager : MonoBehaviour, IService
     [SerializeField] private Light _lightSource;
     [SerializeField] private CharacterLightZone _characterLightZone;
 
-    [Header("Health Components")]
-    [SerializeField] private CharacterHealth _characterHealth;
-
     private EventManager _eventManager;
     private CharacterMover _characterMover;
 
@@ -28,7 +25,6 @@ public class CharacterManager : MonoBehaviour, IService
         _characterMover = new(_eventManager, transform, _movementSpeed);
         _characterMover.Init();
         _characterLightZone.Init(_lightSource, _eventManager);
-        _characterHealth.Init(_eventManager);
     }
 
 

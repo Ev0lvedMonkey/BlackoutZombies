@@ -32,7 +32,6 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             zombiesHealth.TakeDamage(BulletDamage);
-            Debug.Log($"Bullet hit someone");
         }
     }
 }

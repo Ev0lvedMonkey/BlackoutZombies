@@ -1,6 +1,8 @@
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public abstract class AliveObject : MonoBehaviour
 {
     [Header("Configuration")]
@@ -10,6 +12,8 @@ public abstract class AliveObject : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private int _health;
+    protected EventManager _eventManager;
+
 
     protected int Health
     {
@@ -27,6 +31,7 @@ public abstract class AliveObject : MonoBehaviour
     {
         _health = _aliveObjectConfig.MaxHealthPoint;
         _spriteRenderer.sprite = _aliveObjectConfig.AliveSprite;
+        _eventManager = ServiceLocator.Current.Get<EventManager>();
     }
 
     public virtual void TakeDamage(int damage)
@@ -34,7 +39,6 @@ public abstract class AliveObject : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
             Die();
-        Debug.Log($"Bro {gameObject.name} literaly take damage {damage} and he has HP {Health}");
     }
 
     protected abstract void Die();

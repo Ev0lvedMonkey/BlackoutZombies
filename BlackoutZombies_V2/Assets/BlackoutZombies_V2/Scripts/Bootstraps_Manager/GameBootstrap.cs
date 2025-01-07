@@ -16,6 +16,7 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private bool _isLightMode;
 
     private SelectGunUI _selectGunUI;
+    private StatisticsManager _statisticsManager;
     private EventManager _eventManager;
     private ZombieKillStatistics _storage;
     private IStorageService _storageService;
@@ -35,6 +36,7 @@ public class GameBootstrap : MonoBehaviour
 
         _storageService.Load<ZombieKillStatistics>(ConstantsService.StorageKey, (storage) =>
             _storage = storage);
+        _statisticsManager = new(_storage, _storageService, _eventManager);
 
         ServiceLocator.Inizialize();
         ServiceLocator.Current.Register(_eventManager);
@@ -63,5 +65,4 @@ public class GameBootstrap : MonoBehaviour
         _zombiesSpawner.Init(_eventManager, _zombieObjectPool);
         _cameraTargetTracker.Init();
     }
-
 }

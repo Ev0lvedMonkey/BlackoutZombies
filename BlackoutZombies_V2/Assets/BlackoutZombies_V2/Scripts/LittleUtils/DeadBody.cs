@@ -10,6 +10,6 @@ public class DeadBody : MonoBehaviour
     {
         if (_isCharacter)
             return;
-        Destroy(this, DisapperanceTime);    
+        Destroy(this.gameObject, DisapperanceTime);    
     }
 }

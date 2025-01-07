@@ -12,18 +12,17 @@ public class ZombiesObjectPool : MonoBehaviour, IService
     {
         if (_prefabs == null || _prefabs.Count == 0)
         {
-            Debug.LogError("");
+            Debug.LogError("Prefabs list is null");
             return;
         }
        _pool = new ObjectPool<ZombieMover>(_prefabs[0], 5, 15, gameObject.transform);
-        Debug.Log($"Inited");
     }
 
     public void Spawn()
     {
         if (_spawnPoints == null || _spawnPoints.Count == 0)
         {
-            Debug.LogError("Список точек спавна пуст. Добавьте хотя бы одну точку.");
+            Debug.LogError("Spawn list is null");
             return;
         }
 
