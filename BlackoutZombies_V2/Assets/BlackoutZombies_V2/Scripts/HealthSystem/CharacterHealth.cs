@@ -10,20 +10,9 @@ public class CharacterHealth : AliveObject
         _collider = GetComponent<Collider2D>();
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.collider.TryGetComponent(out ZombieHealht zombie))
-        {
-            InvulnerabilityOn();
-            TakeDamage(1);
-        }
-
-    }
-
     public void TakeHeal(int healPoint)
     {
         Health += healPoint;
-        Debug.Log($"{gameObject.name} take heal {healPoint}, bros health now {Health}");
     }
 
 
@@ -34,7 +23,7 @@ public class CharacterHealth : AliveObject
         Destroy(gameObject);
     }
 
-    private void InvulnerabilityOn()
+    public void InvulnerabilityOn()
     {
         StartCoroutine(ActivateInvulnerability());
     }

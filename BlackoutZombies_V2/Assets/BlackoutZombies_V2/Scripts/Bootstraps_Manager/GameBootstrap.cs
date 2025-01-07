@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows.Speech;
+using Random = UnityEngine.Random;
 
 public class GameBootstrap : MonoBehaviour
 {
@@ -21,9 +25,17 @@ public class GameBootstrap : MonoBehaviour
     private ZombieKillStatistics _storage;
     private IStorageService _storageService;
 
+    private Dictionary<int, Action> _trapPositionsDictionary;
+
     private void Awake()
     {
         RegisterServices();
+        _trapPositionsDictionary = new()
+        {
+            {1, ()=> _resourceLoader.LoadResource<TrapPositions1>() },
+            {2, ()=> _resourceLoader.LoadResource<TrapPositions2>() },
+            {3, ()=> _resourceLoader.LoadResource<TrapPositions1>() }
+        };
         InitResources();
         InitializeComponents();
     }
@@ -51,10 +63,15 @@ public class GameBootstrap : MonoBehaviour
     {
         _resourceLoader.InitializePrefabsDictionary();
         if (_isLightMode)
-            _resourceLoader.LoadResource<LightMaterialFloorResource>(null);
+            _resourceLoader.LoadResource<LightMaterialFloorResource>();
         else
-            _resourceLoader.LoadResource<BaseFloorResource>(null);
-        _selectGunUI = ServiceLocator.Current.Get<ResourceLoaderService>().LoadResource<SelectGunUI>(_canvasService.transform);
+            _resourceLoader.LoadResource<BaseFloorResource>();
+        _selectGunUI = _resourceLoader.LoadResource<SelectGunUI>(_canvasService.transform);
+        _resourceLoader.LoadResource<PickUpObjectResource>();
+        _resourceLoader.LoadResource<AroundTraps>();
+        int randomTrapsPosition = Random.Range(1, _trapPositionsDictionary.Count -1);
+        _trapPositionsDictionary[randomTrapsPosition].Invoke();
+
     }
 
     private void InitializeComponents()

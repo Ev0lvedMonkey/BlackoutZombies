@@ -18,8 +18,6 @@ public class StatisticsManager
         _eventManager.OnStopGame += SaveStatistics;
         _eventManager.OnScoreIncremented += IncrementRoundScore;
         _eventManager.OnKilledZombiesIncremented += IncrementRoundDeathZombiesCount;
-
-        _eventManager.OnStartGame += () => Debug.Log("Game Started! Statistics Reset.");
     }
 
     public void ResetAllStatistics()
