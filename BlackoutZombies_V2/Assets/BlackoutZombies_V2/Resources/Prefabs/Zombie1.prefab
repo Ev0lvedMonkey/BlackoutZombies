@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2449106923616698248}
   - component: {fileID: 3237118436427589236}
   - component: {fileID: 7302165704187924761}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Zombie1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5997431412789984510}
   - component: {fileID: 8199245914429631483}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ZombiesEyes2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5788245068339071154}
   - component: {fileID: 4342037929369159542}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ZombiesEyes1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

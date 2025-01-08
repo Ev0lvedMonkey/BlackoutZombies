@@ -31,8 +31,9 @@ public class CharacterHealth : AliveObject
     private IEnumerator ActivateInvulnerability()
     {
         _collider.isTrigger = true;
+        _spriteRenderer.color = Color.red;
         yield return new WaitForSeconds(2f);
         _collider.isTrigger = false;
-        yield return null;
+        _spriteRenderer.color = Color.white;
     }
 }

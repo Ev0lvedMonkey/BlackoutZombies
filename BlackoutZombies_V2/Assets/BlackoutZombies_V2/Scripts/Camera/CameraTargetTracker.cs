@@ -27,6 +27,12 @@ public class CameraTargetTracker : MonoBehaviour
         _camera.LookAt = targetTransform;
     }
 
+    public bool IsPointVisible(Vector3 point)
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        return GeometryUtility.TestPlanesAABB(planes, new Bounds(point, Vector3.one * 0.1f));
+    }
+
     public void AssignCurrentCameraPointAsTarget()
     {
         if (_camera.Follow == null || _camera.LookAt == null)

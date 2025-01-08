@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ZombiesObjectPool : MonoBehaviour, IService
 {
     [SerializeField] private List<ZombieMover> _prefabs;
-    [SerializeField] private List<Transform> _spawnPoints;
+    [SerializeField] private List<SpawnDot> _spawnPoints = new();
 
     private ObjectPool<ZombieMover> _pool;
 
@@ -15,14 +17,15 @@ public class ZombiesObjectPool : MonoBehaviour, IService
             Debug.LogError("Prefabs list is null");
             return;
         }
-       _pool = new ObjectPool<ZombieMover>(_prefabs[0], 5, 15, gameObject.transform);
+        _pool = new ObjectPool<ZombieMover>(_prefabs[0], 7, 25, gameObject.transform);
     }
 
     public void Spawn()
     {
-        if (_spawnPoints == null || _spawnPoints.Count == 0)
+        List<SpawnDot> activeSpawnPoints = _spawnPoints.Where(sp => sp.IsActive).ToList();
+        if (activeSpawnPoints == null || activeSpawnPoints.Count == 0)
         {
-            Debug.LogError("Spawn list is null");
+            Debug.LogWarning("No active spawn points available.");
             return;
         }
 
@@ -34,10 +37,14 @@ public class ZombiesObjectPool : MonoBehaviour, IService
         }
 
         var item = _pool.Get();
+        if (item == null)
+        {
+            Debug.LogWarning("No available objects in the pool.");
+            return;
+        }
 
-        var randomSpawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Count - 1)];
-
-        item?.transform.SetPositionAndRotation(randomSpawnPoint.position, Quaternion.identity);
+        var randomSpawnPoint = activeSpawnPoints[Random.Range(0, activeSpawnPoints.Count)];
+        item.transform.SetPositionAndRotation(randomSpawnPoint.transform.position, Quaternion.identity);
     }
 
     public void Dispose(ZombieMover obj)

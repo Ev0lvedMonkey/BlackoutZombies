@@ -9,7 +9,7 @@ public abstract class AliveObject : MonoBehaviour
     [SerializeField] protected AliveObjectConfig _aliveObjectConfig;
 
     [Header("Components")]
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] protected SpriteRenderer _spriteRenderer;
 
     private int _health;
     protected EventManager _eventManager;

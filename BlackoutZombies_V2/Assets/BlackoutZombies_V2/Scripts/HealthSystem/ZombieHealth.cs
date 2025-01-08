@@ -13,10 +13,10 @@ public class ZombieHealht : AliveObject
 
     protected override void Die()
     {
+        ZombiesObjectPool zombiesObjectPool = ServiceLocator.Current.Get<ZombiesObjectPool>();
+        zombiesObjectPool.Dispose(_zombieMover);
         Instantiate(_aliveObjectConfig.DeadBodyPrefab, transform.position, transform.rotation);
         _eventManager.OnScoreIncremented?.Invoke();
         _eventManager.OnKilledZombiesIncremented?.Invoke();
-        ZombiesObjectPool zombiesObjectPool = ServiceLocator.Current.Get<ZombiesObjectPool>();
-        zombiesObjectPool.Dispose(_zombieMover);
     }
 }

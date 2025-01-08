@@ -6,8 +6,8 @@ public class ZombiesSpawner : MonoBehaviour
     private EventManager _eventManager;
     private ZombiesObjectPool _zombiesObjectPool;
     private Coroutine _coroutine;
-    private const int MinSpawnZombiesCount = 2;
-    private const int MaxSpawnZombiesCount = 6;
+    private const int MinSpawnZombiesCount = 4;
+    private const int MaxSpawnZombiesCount = 7;
 
     public void Init(EventManager eventManager, ZombiesObjectPool zombiesObjectPool)
     {
