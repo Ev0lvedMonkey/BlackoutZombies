@@ -13,7 +13,7 @@ public class CharacterManager : MonoBehaviour, IService
     private EventManager _eventManager;
     private CharacterMover _characterMover;
 
-    private void Awake()
+    private void OnEnable()
     {
         InitComponents();
     }
@@ -25,6 +25,7 @@ public class CharacterManager : MonoBehaviour, IService
         _characterMover = new(_eventManager, transform, _movementSpeed);
         _characterMover.Init();
         _characterLightZone.Init(_lightSource, _eventManager);
+        Debug.Log($"Inited character manager");
     }
 
 

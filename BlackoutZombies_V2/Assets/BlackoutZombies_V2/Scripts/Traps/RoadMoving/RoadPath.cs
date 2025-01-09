@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadPath : MonoBehaviour
+public class RoadPath : ResourcePrefab
 {
     [SerializeField] private Transform[] dotsCollection;
 

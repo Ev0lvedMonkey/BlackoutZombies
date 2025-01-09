@@ -39,9 +39,6 @@ public class ResourceLoaderService : MonoBehaviour, IService
 
     public T LoadResource<T>(Transform resourceParent = null) where T : ResourcePrefab
     {
-        Vector3 loadPosition = Vector3.zero;
-        Quaternion loadRotation = Quaternion.identity;
-
         var type = typeof(T);
 
         if (_loadedResources.TryGetValue(type, out var existingResource))
@@ -56,7 +53,7 @@ public class ResourceLoaderService : MonoBehaviour, IService
             return null;
         }
 
-        var instance = GameObject.Instantiate((MonoBehaviour)prefab, resourceParent );
+        var instance = GameObject.Instantiate((MonoBehaviour)prefab, resourceParent);
         var resourceComponent = instance.GetComponent<T>();
         if (resourceComponent == null)
         {
@@ -67,7 +64,7 @@ public class ResourceLoaderService : MonoBehaviour, IService
         _loadedResources[type] = resourceComponent;
         return resourceComponent;
     }
-    
+
     public void UnloadResource<T>() where T : ResourcePrefab
     {
         var type = typeof(T);

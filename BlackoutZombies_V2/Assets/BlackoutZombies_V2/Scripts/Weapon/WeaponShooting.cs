@@ -10,6 +10,7 @@ public abstract class WeaponShooting : ResourcePrefab
     private float _fireCooldown;
     private int _bulletsCountInClip;
     private EventManager _eventManager;
+    private HUD _hud;
     private bool _canShoot;
     private const int LMB = 0;
 
@@ -24,6 +25,7 @@ public abstract class WeaponShooting : ResourcePrefab
 
     private void OnEnable()
     {
+        _hud = ServiceLocator.Current.Get<HUD>();
         ReloadGun();
     }
 
@@ -36,6 +38,8 @@ public abstract class WeaponShooting : ResourcePrefab
     public void ReloadGun()
     {
         _bulletsCountInClip = _weaponConfig.BulletsCount;
+        _hud.UpdateBulletsCount(_bulletsCountInClip);
+        _hud.ShowBulletsCountText();
     }
 
     public void Fire()
@@ -47,6 +51,7 @@ public abstract class WeaponShooting : ResourcePrefab
             Shoot();
             _bulletsCountInClip--;
             _fireCooldown = _weaponConfig.FireRate;
+            _hud.UpdateBulletsCount(_bulletsCountInClip);
         }
         else
             _fireCooldown -= Time.deltaTime;

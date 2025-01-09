@@ -22,11 +22,6 @@ public class SelectGunUI : ResourcePrefab
     private ResourceLoaderService _resourceLoaderService;
     private Dictionary<int, Action> _characterDictionary;
 
-    private void OnDisable()
-    {
-        _eventManager.OnStartGame -= Hide;
-    }
-
     public void Init()
     {
         UpdateGunIcon();
@@ -64,6 +59,9 @@ public class SelectGunUI : ResourcePrefab
 
     private void SelectGun()
     {
+        HUD hud = ServiceLocator.Current.Get<HUD>();
+        hud.UpdateGunImage(_selectGunScriptableObject.GunSprites[_currentGunIndex]);
+        hud.ShowGunImage();
         _characterDictionary[_currentGunIndex]?.Invoke();
         _eventManager.OnStartGame?.Invoke();
     }

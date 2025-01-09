@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 using Random = UnityEngine.Random;
 
 public class GameBootstrap : MonoBehaviour
@@ -9,9 +8,9 @@ public class GameBootstrap : MonoBehaviour
     [Header("Components")]
     [SerializeField] private ResourceLoaderService _resourceLoader;
     [SerializeField] private CanvasService _canvasService;
-    [SerializeField] private KillZombiesCountStorage _exampleStorage;
     [SerializeField] private ZombiesSpawner _zombiesSpawner;
     [SerializeField] private CameraTargetTracker _cameraTargetTracker;
+    [SerializeField] private KeyboardInputHandler _keyboardInputHandler;
 
     [Header("Object Pools")]
     [SerializeField] private ZombiesObjectPool _zombieObjectPool;
@@ -20,6 +19,7 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private bool _isLightMode;
 
     private SelectGunUI _selectGunUI;
+    private HUD _hud;
     private StatisticsManager _statisticsManager;
     private EventManager _eventManager;
     private ZombieKillStatistics _storage;
@@ -34,7 +34,7 @@ public class GameBootstrap : MonoBehaviour
         {
             {1, ()=> _resourceLoader.LoadResource<TrapPositions1>() },
             {2, ()=> _resourceLoader.LoadResource<TrapPositions2>() },
-            {3, ()=> _resourceLoader.LoadResource<TrapPositions1>() }
+            {3, ()=> _resourceLoader.LoadResource<TrapPositions3>() }
         };
         InitResources();
         InitializeComponents();
@@ -48,7 +48,6 @@ public class GameBootstrap : MonoBehaviour
 
         _storageService.Load<ZombieKillStatistics>(ConstantsService.StorageKey, (storage) =>
             _storage = storage);
-        _statisticsManager = new(_storage, _storageService, _eventManager);
 
         ServiceLocator.Inizialize();
         ServiceLocator.Current.Register(_eventManager);
@@ -62,6 +61,9 @@ public class GameBootstrap : MonoBehaviour
     private void InitResources()
     {
         _resourceLoader.InitializePrefabsDictionary();
+        _hud = _resourceLoader.LoadResource<HUD>(_canvasService.transform);
+        ServiceLocator.Current.Register(_hud);
+        _statisticsManager = new(_storage, _storageService, _eventManager);
         if (_isLightMode)
             _resourceLoader.LoadResource<LightMaterialFloorResource>();
         else
@@ -69,7 +71,7 @@ public class GameBootstrap : MonoBehaviour
         _selectGunUI = _resourceLoader.LoadResource<SelectGunUI>(_canvasService.transform);
         _resourceLoader.LoadResource<PickUpObjectResource>();
         _resourceLoader.LoadResource<AroundTraps>();
-        int randomTrapsPosition = Random.Range(1, _trapPositionsDictionary.Count -1);
+        int randomTrapsPosition = Random.Range(1, _trapPositionsDictionary.Count + 1);
         _trapPositionsDictionary[randomTrapsPosition].Invoke();
 
     }
@@ -77,8 +79,11 @@ public class GameBootstrap : MonoBehaviour
     private void InitializeComponents()
     {
         _selectGunUI.Init();
-        _exampleStorage.Init();
         _eventManager.OnStartGame += _zombieObjectPool.Init;
+        _eventManager.OnStopGame += () => _resourceLoader.UnloadResource<HUD>();
+        _eventManager.OnStopGame += () => _resourceLoader.LoadResource<RestartGameUI>(_canvasService.transform);
+        _eventManager.OnStartGame += () => _keyboardInputHandler.Init(_eventManager);
+        _eventManager.OnPauseGame += () => _resourceLoader.LoadResource<PauseUI>(_canvasService.transform);
         _zombiesSpawner.Init(_eventManager, _zombieObjectPool);
         _cameraTargetTracker.Init();
     }

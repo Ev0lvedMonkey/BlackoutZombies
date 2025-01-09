@@ -26,8 +26,7 @@ public class CharacterMover
         _eventManager.OnStopGame += BlockMove;
         _eventManager.OnPauseGame += BlockMove;
     }
-
-
+    
     public void Move()
     {
         if (_canMove == false)

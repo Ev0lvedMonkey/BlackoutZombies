@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadMover : MonoBehaviour
+public class RoadMover : ResourcePrefab
 {
     [SerializeField] private RoadPath _roadPath;
 
@@ -37,4 +37,8 @@ public class RoadMover : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
     }
+
+    public void SetRoadPath(RoadPath roadPath) =>
+        _roadPath = roadPath;
+
 }

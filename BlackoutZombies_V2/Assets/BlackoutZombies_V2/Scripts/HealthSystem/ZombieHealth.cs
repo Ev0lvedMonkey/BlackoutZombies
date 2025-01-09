@@ -6,6 +6,8 @@ public class ZombieHealht : AliveObject
 
     [SerializeField] private ZombieMover _zombieMover;
 
+    private ZombiesObjectPool _zombiesObjectPool;
+
     private void OnValidate()
     {
         _zombieMover = GetComponent<ZombieMover>();
@@ -13,8 +15,8 @@ public class ZombieHealht : AliveObject
 
     protected override void Die()
     {
-        ZombiesObjectPool zombiesObjectPool = ServiceLocator.Current.Get<ZombiesObjectPool>();
-        zombiesObjectPool.Dispose(_zombieMover);
+        _zombiesObjectPool = ServiceLocator.Current.Get<ZombiesObjectPool>();
+        _zombiesObjectPool.Dispose(_zombieMover);
         Instantiate(_aliveObjectConfig.DeadBodyPrefab, transform.position, transform.rotation);
         _eventManager.OnScoreIncremented?.Invoke();
         _eventManager.OnKilledZombiesIncremented?.Invoke();

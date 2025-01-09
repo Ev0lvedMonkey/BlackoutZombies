@@ -4,10 +4,22 @@ using UnityEngine;
 public class CharacterHealth : AliveObject
 {
     private Collider2D _collider;
+    private HUD _hud;
+
 
     private void OnEnable()
     {
         _collider = GetComponent<Collider2D>();
+        _hud = ServiceLocator.Current.Get<HUD>();
+        _hud.UpdateHealthImage(Health);
+        _hud.ShowHealthImage();
+
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        _hud.UpdateHealthImage(Health);
     }
 
     public void TakeHeal(int healPoint)
@@ -18,9 +30,9 @@ public class CharacterHealth : AliveObject
 
     protected override void Die()
     {
+        Destroy(gameObject);
         Instantiate(_aliveObjectConfig.DeadBodyPrefab, transform.position, transform.rotation);
         _eventManager.OnStopGame?.Invoke();
-        Destroy(gameObject);
     }
 
     public void InvulnerabilityOn()
